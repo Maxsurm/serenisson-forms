@@ -32,4 +32,7 @@ public class Patient implements Serializable {
     @OneToOne
     @Column(nullable = true) // peut etre vide lors de la création du patient, car peuplé par le patient dans un deuxième temps
     private Anamnese anamnese;
+
+    public Patient(String nom, String prenom, String mail) {
+    }
 }

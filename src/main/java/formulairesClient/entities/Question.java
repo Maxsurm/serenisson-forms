@@ -25,4 +25,7 @@ public class Question {
     // L'énumération servira à choisir le template en fonction du type de question (RADIO, QCM ou TexteArea)
     @Enumerated(EnumType.STRING)
     private QuestionType type;
+
+    public Question(int rankOrder, String question, QuestionType type) {
+    }
 }
