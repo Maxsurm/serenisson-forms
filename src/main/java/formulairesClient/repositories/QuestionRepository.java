@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-    List<Question> findByRankOrder();
+    List<Question> findByRankOrder(int rankOrder);
 
 }

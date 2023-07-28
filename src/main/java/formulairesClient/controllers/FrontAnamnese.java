@@ -23,10 +23,5 @@ public class FrontAnamnese {
     @Autowired
     private PatientRepository p_repository;
 
-    @GetMapping("/questions")
-    public String displayQuestion(Model model){
-        List<Question> questions=q_repository.findByRankOrder();
-        model.addAttribute("questions", questions);
-        return "questions";
-    }
+
 }
