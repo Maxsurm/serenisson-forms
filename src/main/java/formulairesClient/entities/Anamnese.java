@@ -1,15 +1,14 @@
 package formulairesClient.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
+// Entitée recevant les fichiers PDF suite à la complétion des formulaires par les patients
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -24,5 +23,7 @@ public class Anamnese implements Serializable {
 
     private LocalDate dateCreation;
 
-    private File document;
+    //propriété recevant les pdf
+    @Lob
+    private byte[] document;
 }

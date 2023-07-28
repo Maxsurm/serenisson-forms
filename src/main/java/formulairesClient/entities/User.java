@@ -1,6 +1,7 @@
 package formulairesClient.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.io.Serializable;
@@ -22,6 +23,7 @@ public class User implements Serializable {
 
     private String nom;
 
+    @Email
     @Column(nullable = false,unique = true)
     private String email;
 

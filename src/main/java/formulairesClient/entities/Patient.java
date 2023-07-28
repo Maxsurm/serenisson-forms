@@ -1,6 +1,7 @@
 package formulairesClient.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.io.Serializable;
@@ -15,19 +16,20 @@ public class Patient implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generation automatique d'ID
     private long id;
 
-    @Column(length= 50)
+    @Column(nullable = false,length= 50)
     private String prenom;
 
-    @Column(length= 80)
+    @Column(nullable = false,length= 80)
     private String nom;
 
+    @Email
     @Column(nullable = false,length = 100)
     private String mail;
 
     @OneToOne
-    @Column(nullable = true)
+    @Column(nullable = true) // peut etre vide lors de la création du patient, car peuplé par le patient dans un deuxième temps
     private Anamnese anamnese;
 }
