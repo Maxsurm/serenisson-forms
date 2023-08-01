@@ -15,6 +15,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/anamnese")
 public class FrontAnamnese {
+
+
     //Accès au repository des questions
     @Autowired
     private QuestionRepository q_repository;
