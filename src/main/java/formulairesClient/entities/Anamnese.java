@@ -3,7 +3,6 @@ package formulairesClient.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -21,7 +20,8 @@ public class Anamnese implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private LocalDate dateCreation;
+    @Temporal(TemporalType.DATE)
+    private LocalDate createdAt;
 
     //propriété recevant les pdf
     @Lob
