@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin-layout.html::main-fragment(~{::title},~{::#add-question-admin-content})}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ajouter un question</title>
 </head>
-<body>
 
+<body>
+<div id="add-question-admin-content">
+    <h2 class>Ajouter un question</h2>
+    <form method="post" th:action="@{/admin/questions/add}" th:object="${formquestion}">
+        <div class="mb-2">
+            <label for="rankOrder" class="form-label">Rang</label>
+            <input type="int" th:field="*{rankOrder}" id="rankOrder" class="form-control" th:errorclass="is-invalid" />
+            <p th:if="${#fields.hasErrors('rankOrder')}" th:errors="*{rankOrder}" class="text-danger small" />
+        </div>
+        <div class="mb-2">
+            <label for="question" class="form-label">Intitulé de la question</label>
+            <input type="text" th:field="*{question}" id="question" class="form-control" th:errorclass="is-invalid" min="0" step="0.01">
+            <p th:if="${#fields.hasErrors('question')}" th:errors="*{question}" class="text-danger small" />
+        </div>
+        <div class="mb-2">
+            <label for="type" class="form-label">Type de question</label>
+            <input type="select" th:field="*{type}" id="type" class="form-control" th:errorclass="is-invalid">
+            <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger small" />
+        </div>
+        <input type="submit" class="btn btn-primary col-md-2 offset-md-5" value="Ajouter"/>
+    </form>
+</div>
 </body>
 </html>

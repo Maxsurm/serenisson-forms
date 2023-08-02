@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin-layout.html::main-fragment(~{::title},~{::#questions-main-content})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Gestion des questions</title>
 </head>
 <body>
+<div id="questions-main-content">
+    <h2 class>Gestion des questions</h2>
+    <a class="btn btn-primary btn-sm my-3" href="/admin/questions/add">Ajouter un question</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Rang</th>
+            <th>Question</th>
+            <th>Type de question</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="question : ${questions}">
+            <td th:text="${question.id}"/>
+            <td th:text="${question.rankOrder}"/>
+            <td th:text="${question.question}"/>
+            <td th:text="${question.type}"/>
+            <td>
+                <a href="#" class="btn btn-primary">voir</a>
+                <a href="#" class="btn btn-success">Modifier</a>
+                <a href="#" class="btn btn-alert">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 
 </body>
 </html>

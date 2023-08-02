@@ -4,7 +4,6 @@ import formulairesClient.entities.Patient;
 import formulairesClient.entities.Question;
 import formulairesClient.forms.FormPatient;
 import formulairesClient.forms.FormQuestion;
-import formulairesClient.repositories.PatientRepository;
 import formulairesClient.repositories.QuestionRepository;
 import formulairesClient.services.PatientService;
 import jakarta.validation.Valid;
@@ -50,7 +49,7 @@ public class AdminController {
         }
         else {
             Patient patient=new Patient(formpatient.getNom(),formpatient.getPrenom(),formpatient.getMail());
-            p_repository.saveAndFlush(patient);
+            p_repository.saveOrUpdate(patient);
             return "redirect:/admin/patients";
         }
     }

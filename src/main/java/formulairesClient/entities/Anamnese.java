@@ -24,6 +24,6 @@ public class Anamnese implements Serializable {
     private LocalDate createdAt;
 
     //propriété recevant les pdf
-    @Lob
-    private byte[] document;
+//    @Lob
+//    private byte[] document;
 }
