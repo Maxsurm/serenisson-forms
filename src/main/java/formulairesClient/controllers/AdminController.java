@@ -6,6 +6,7 @@ import formulairesClient.forms.FormPatient;
 import formulairesClient.forms.FormQuestion;
 import formulairesClient.repositories.PatientRepository;
 import formulairesClient.repositories.QuestionRepository;
+import formulairesClient.services.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,13 @@ public class AdminController {
      */
     //Accès au repository de patient
     @Autowired
-    private PatientRepository p_repository;
+    private PatientService p_repository;
 
     //Affichage des patients
     @GetMapping("/patients")
     public String displayPatient(Model model){
         List<Patient> patients=p_repository.findAll();
+
         model.addAttribute("patients", patients);
         return "patients";
     }
@@ -57,6 +59,7 @@ public class AdminController {
     /*
     ---------------------QUESTIONS---------------------
      */
+    
 
     //Accès au repository de question
     @Autowired
