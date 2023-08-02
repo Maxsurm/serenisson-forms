@@ -15,7 +15,7 @@ public class FormPatient {
     @Size(min=2,max=80)
     private String nom;
 
-    @NotEmpty
+    @NotBlank
     @Email
     private String mail;
 

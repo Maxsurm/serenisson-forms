@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin-layout.html::main-fragment(~{::title},~{::#patients-main-content})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des patients</title>
+</head>
+<body>
+<div id="patients-main-content">
+    <h2 class>Gestion des patients</h2>
+    <a class="btn btn-primary btn-sm my-3" href="/admin/patients/add">Ajouter un patient</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Mail</th>
+            <th>Anamnèse</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"/>
+            <td th:text="${patient.prenom}"/>
+            <td th:text="${patient.nom}"/>
+            <td th:text="${patient.mail}"/>
+            <td th:text="${patient.anamnese}"/>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin-layout.html::main-fragment(~{::title},~{::#add-patient-admin-content})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un patient</title>
+</head>
+
+<body>
+<div id="add-patient-admin-content">
+    <h2 class>Ajouter un patient</h2>
+    <form method="post" th:action="@{/admin/patients/add}" th:object="${formpatient}">
+        <div class="mb-2">
+            <label for="prenom" class="form-label">Prenom</label>
+            <input type="text" th:field="*{prenom}" id="prenom" class="form-control" th:errorclass="is-invalid" />
+            <p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" class="text-danger small" />
+        </div>
+        <div class="mb-2">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" th:field="*{nom}" id="nom" class="form-control" th:errorclass="is-invalid" min="0" step="0.01">
+            <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger small" />
+        </div>
+        <div class="mb-2">
+            <label for="mail" class="form-label">Adresse Email</label>
+            <input type="email" th:field="*{mail}" id="mail" class="form-control" th:errorclass="is-invalid">
+            <p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" class="text-danger small" />
+        </div>
+        <input type="submit" class="btn btn-primary col-md-2 offset-md-5" value="Ajouter"/>
+    </form>
+</div>
+</body>
+</html>
