@@ -9,13 +9,6 @@ public class PatientDTO {
 
     private long id;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     @NotBlank
     @Size(min=2,max=50)
@@ -40,6 +33,13 @@ public class PatientDTO {
         this.mail = mail;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getPrenom() {
         return prenom;
     }

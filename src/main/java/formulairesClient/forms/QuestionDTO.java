@@ -6,8 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
 
-public class FormQuestion {
+public class QuestionDTO {
 
+    private long id;
     @Range(min=1)
     private int rankOrder;
 
@@ -18,6 +19,14 @@ public class FormQuestion {
     private QuestionType type;
 
     private Formulaire formulaire;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Formulaire getFormulaire() {
         return formulaire;

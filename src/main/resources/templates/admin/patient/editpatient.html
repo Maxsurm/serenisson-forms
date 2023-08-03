@@ -11,7 +11,7 @@
   <div class="d-flex justify-content-center">
     <div class="col-12 col-md-10 card px-3 py-5">
 
-      <h2 class="fs-3 mb-4">Ajouter un patient</h2>
+      <h2 class="fs-3 mb-4">Modifier un patient</h2>
       <form method="post" th:action="@{/admin/patients/add}" th:object="${patient}">
         <input type="hidden" th:field="${patient.id}"/>
         <div class="d-flex">
