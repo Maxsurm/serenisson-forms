@@ -1,6 +1,6 @@
 package formulairesClient.services;
 
-import formulairesClient.entities.Question;
+import formulairesClient.entities.question.Question;
 import formulairesClient.repositories.QuestionRepository;
 import org.springframework.stereotype.Service;
 

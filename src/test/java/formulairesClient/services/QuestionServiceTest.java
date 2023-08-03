@@ -1,7 +1,7 @@
 package formulairesClient.services;
 
-import formulairesClient.entities.Question;
-import formulairesClient.entities.QuestionType;
+import formulairesClient.entities.question.Question;
+import formulairesClient.entities.question.QuestionType;
 import formulairesClient.repositories.QuestionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
