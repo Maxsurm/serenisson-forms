@@ -3,31 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:rel="stylesheet" th:href="@{/css/admin-style.css}">
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title th:replace="${titre}">Serenisson</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5 sticky-top">
-  <a class="navbar-brand" href="/admin">Formation Spring</a>
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbarToggler"
-            aria-controls="navbarToggle" aria-expanded="false"
-            aria-label="Toggle Navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarToggler">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-items"><a class="nav-link" href="/admin">admin</a></li>
-        <li class="nav-items"><a class="nav-link" href="/patients">Patients</a></li>
-        <li class="nav-items"><a class="nav-link" href="/questions">Questions</a></li>
-      </ul>
-    </div>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-md-block text-white sidebar vh-100">
+      <div class="position-sticky">
+        <a class="nav-link text-white" href="/admin/patients">
+        <img th:src="@{/images/logo-mini.webp}" alt="Logo Mini" class="w-100 p-5 rounded-pill">
+        </a>
+        <ul class="nav flex-column">
+          <li class="nav-item px-4 py-1">
+            <a class="sidebar-custom-btn nav-link text-white border border-dark-subtle text-center fs-5 rounded-4" href="/admin/patients">Patients</a>
+          </li>
+          <li class="nav-item px-4 py-1">
+            <a class="sidebar-custom-btn nav-link text-white border border-dark-subtle text-center fs-5 rounded-4" href="/admin/questions">Questions</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-10 ms-sm-auto px-5">
+      <div class="d-flex justify-content-center">
+        <img th:src="@{/images/logo.png}" alt="Logo" class="w-25 py-5">
+      </div>
+
+      <div th:replace="${maincontent}?:~{}"> </div>
+    </main>
   </div>
-</nav>
-<main class="container-fluid">
-  <div th:replace="${maincontent}?:~{}"> </div>
-</main>
+</div>
 <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.min.js}"></script>
 </body>
 

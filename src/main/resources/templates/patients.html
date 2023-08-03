@@ -7,28 +7,28 @@
 <body>
 <div id="patients-main-content">
     <h2 class>Gestion des patients</h2>
-    <a class="btn btn-primary btn-sm my-3" href="/admin/patients/add">Ajouter un patient</a>
+    <a class="btn btn-success btn-sm my-3" href="/admin/patients/add">Ajouter un patient</a>
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
+<!--            <th>Id</th>-->
             <th>Prénom</th>
             <th>Nom</th>
             <th>Mail</th>
-            <th>Anamnèse</th>
+<!--            <th>Anamnèse</th>-->
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="patient : ${patients}">
-            <td th:text="${patient.id}"/>
+<!--            <td th:text="${patient.id}"/>-->
             <td th:text="${patient.prenom}"/>
             <td th:text="${patient.nom}"/>
             <td th:text="${patient.mail}"/>
-            <td th:text="${patient.anamnese}"/>
+<!--            <td th:text="${patient.anamnese}"/>-->
             <td>
-                <a href="#" class="btn btn-primary">voir</a>
-                <a href="#" class="btn btn-success">Modifier</a>
+                <a href="#" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                <a href="#" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
             </td>
         </tr>
         </tbody>

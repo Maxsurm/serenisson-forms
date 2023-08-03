@@ -1,0 +1,9 @@
+.sidebar{
+    background-color: #222e3c;
+}
+
+
+.sidebar-custom-btn:hover{
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.35), inset -5px -5px 5px rgba(0, 0, 0, 0.35);
+    background-color: #1a232d;
+}
