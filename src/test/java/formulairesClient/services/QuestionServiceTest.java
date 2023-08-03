@@ -67,7 +67,7 @@ public class QuestionServiceTest {
         long id = 2L;
         q.setId(id);
         Mockito.when(repository.findById(id)).thenReturn(Optional.of(q));
-        Question resultat = service.findById(id);
+        Question resultat = service.findById(id).orElse(null);
         assertEquals(q,resultat);
     }
 

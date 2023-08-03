@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin-layout.html::main-fragment(~{::title},~{::#edit-patient-admin-content})}">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier un patient</title>
+</head>
+
+<body>
+<div id="edit-patient-admin-content" class="">
+  <div class="d-flex justify-content-center">
+    <div class="col-12 col-md-10 card px-3 py-5">
+
+      <h2 class="fs-3 mb-4">Ajouter un patient</h2>
+      <form method="post" th:action="@{/admin/patients/add}" th:object="${patient}">
+        <input type="hidden" th:field="${patient.id}"/>
+        <div class="d-flex">
+          <div class=" col-12 col-md-6 p-2">
+            <label for="prenom" class="form-label">Prenom</label>
+            <input type="text" th:field="${patient.prenom}" id="prenom" class="form-control" th:errorclass="is-invalid" />
+            <p th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}" class="text-danger small" />
+          </div>
+          <div class=" col-12 col-md-6 p-2">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" th:field="${patient.nom}" id="nom" class="form-control" th:errorclass="is-invalid" min="0" step="0.01">
+            <p th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger small" />
+          </div>
+        </div>
+        <div class="p-2">
+          <label for="mail" class="form-label">Adresse Email</label>
+          <input type="email" th:field="${patient.mail}" id="mail" class="form-control" th:errorclass="is-invalid">
+          <p th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}" class="text-danger small" />
+        </div>
+        <input type="submit" class="btn btn-success col-md-2 offset-md-5 mt-3" value="Ajouter"/>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

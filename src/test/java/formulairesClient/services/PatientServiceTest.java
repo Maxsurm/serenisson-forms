@@ -80,7 +80,7 @@ class PatientServiceTest {
                 .thenReturn(Optional.of(patient)); // le retour attendu etant optionnel on rajoute "Optional.of(entity)"
 
         // act
-        Patient result = service.findById(id);
+        Patient result = service.findById(id).orElse(null);
 
         // assert
         // Syntaxe assert 1ere valeur est "expected" la seconde est "actual" (result)
@@ -97,7 +97,7 @@ class PatientServiceTest {
                 .thenReturn(Optional.empty());
 
         // act
-        Patient result = service.findById(id);
+        Patient result = service.findById(id).orElse(null);
 
         // assert
         assertNull(result);
@@ -120,7 +120,7 @@ class PatientServiceTest {
         Mockito.when(repository.findById(id))
                 .thenReturn(datas.stream().filter(patient -> patient.getId() == id).findFirst());
         // act
-        Patient result = service.findById(id);
+        Patient result = service.findById(id).orElse(null);
         // assert
         // Syntaxe assert 1ere valeur est "expected" la seconde est "actual" (result)
         assertEquals(expected,result);

@@ -1,11 +1,21 @@
 package formulairesClient.forms;
 
+import formulairesClient.entities.Anamnese;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class FormPatient {
+public class PatientDTO {
+
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     @NotBlank
     @Size(min=2,max=50)
@@ -19,10 +29,12 @@ public class FormPatient {
     @Email
     private String mail;
 
-    public FormPatient() {
+    private Anamnese anamnese;
+
+    public PatientDTO() {
     }
 
-    public FormPatient(String prenom, String nom, String mail) {
+    public PatientDTO(String prenom, String nom, String mail) {
         this.prenom = prenom;
         this.nom = nom;
         this.mail = mail;
@@ -50,5 +62,13 @@ public class FormPatient {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public Anamnese getAnamnese() {
+        return anamnese;
+    }
+
+    public void setAnamnese(Anamnese anamnese) {
+        this.anamnese = anamnese;
     }
 }
