@@ -29,6 +29,7 @@
             <td class="d-flex">
                 <a href="#" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                 <a th:href="@{/admin/questions/edit/{id}(id=${question.id})}" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+<!--                verif a faire sur le onclick-->
                 <a th:href="@{/admin/questions/delete/{id}(id=${question.id})}" class="btn btn-danger"><i class="fa-solid fa-trash" th:onclick="return confirm('Etes-vous sûr(e) de vouloir supprimer cette entrée?')"></i></a>
            </td>
         </tr>
