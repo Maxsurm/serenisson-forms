@@ -1,9 +1,7 @@
-package formulairesClient.entities;
+package formulairesClient.entities.question;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Enumeration;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,6 +24,7 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private QuestionType type;
 
-    public Question(int rankOrder, String question, QuestionType type) {
-    }
+    @Enumerated(EnumType.STRING)
+    private Formulaire formulaire;
+
 }

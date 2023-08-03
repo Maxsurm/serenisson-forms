@@ -13,12 +13,12 @@
     <h2 class>Ajouter une question</h2>
     <form method="post" th:action="@{/admin/questions/add}" th:object="${formquestion}">
         <div class="d-flex">
-        <div class=" col-12 col-md-6 p-2">
+        <div class=" col-12 col-md-4 p-2">
             <label for="rankOrder" class="form-label">Rang</label>
             <input type="number" th:field="*{rankOrder}" id="rankOrder" class="form-control" th:errorclass="is-invalid" />
             <p th:if="${#fields.hasErrors('rankOrder')}" th:errors="*{rankOrder}" class="text-danger small" />
         </div>
-        <div class=" col-12 col-md-6 p-2">
+        <div class=" col-12 col-md-4 p-2">
             <label for="type" class="form-label">Type de question</label>
             <select th:field="*{type}" id="type" class="form-control" th:errorclass="is-invalid">
                 <option value="QCM">Question à choix multiples</option>
@@ -26,6 +26,14 @@
                 <option value="TEXT">Zone de texte</option>
             </select>
             <p th:if="${#fields.hasErrors('type')}" th:errors="*{type}" class="text-danger small" />
+        </div>
+            <div class=" col-12 col-md-4 p-2">
+            <label for="formulaire" class="form-label">Formulaire</label>
+            <select th:field="*{formulaire}" id="formulaire" class="form-control" th:errorclass="is-invalid">
+                <option value="ANAMNESE">Anamnèse</option>
+                <option value="SIXMOIS">Questionnaire à six mois</option>
+            </select>
+            <p th:if="${#fields.hasErrors('formulaire')}" th:errors="*{formulaire}" class="text-danger small" />
         </div>
         </div>
         <div class="mb-2 p-2">

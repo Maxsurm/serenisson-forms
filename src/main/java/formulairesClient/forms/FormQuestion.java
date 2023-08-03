@@ -1,15 +1,14 @@
 package formulairesClient.forms;
 
-import formulairesClient.entities.QuestionType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import formulairesClient.entities.question.Formulaire;
+import formulairesClient.entities.question.QuestionType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.Range;
 
 public class FormQuestion {
 
-    @NotBlank
-    @Size(max=4)
+    @Range(min=1)
     private int rankOrder;
 
     @NotBlank
@@ -17,6 +16,16 @@ public class FormQuestion {
     private String question;
 
     private QuestionType type;
+
+    private Formulaire formulaire;
+
+    public Formulaire getFormulaire() {
+        return formulaire;
+    }
+
+    public void setFormulaire(Formulaire formulaire) {
+        this.formulaire = formulaire;
+    }
 
     public int getRankOrder() {
         return rankOrder;
