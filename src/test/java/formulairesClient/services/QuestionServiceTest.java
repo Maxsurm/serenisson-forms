@@ -1,5 +1,6 @@
 package formulairesClient.services;
 
+import formulairesClient.entities.question.Formulaire;
 import formulairesClient.entities.question.Question;
 import formulairesClient.entities.question.QuestionType;
 import formulairesClient.repositories.QuestionRepository;
@@ -29,8 +30,8 @@ public class QuestionServiceTest {
     @InjectMocks
     private QuestionService service;
 
-    private static final Question q1 = new Question(1L,1, "question 1 ?", QuestionType.QCM );
-    private static final Question q2 = new Question(2L,2, "question 2 ?", QuestionType.TEXT );
+    private static final Question q1 = new Question(1L,1, "question 1 ?", QuestionType.QCM, Formulaire.ANAMNESE );
+    private static final Question q2 = new Question(2L,2, "question 2 ?", QuestionType.TEXT, Formulaire.SIXMOIS );
 
     private static List<Question> questions = new ArrayList<>(List.of(
             q1,
@@ -72,9 +73,9 @@ public class QuestionServiceTest {
 
     private static Stream<Arguments> createModifyProvider(){
             return Stream.of(
-                    Arguments.of(questions, new Question(1L,4, "question 4 ?", QuestionType.RADIO), 1L),
+                    Arguments.of(questions, new Question(1L,4, "question 4 ?", QuestionType.RADIO, Formulaire.ANAMNESE), 1L),
                     Arguments.of(questions, q2, 2L),
-                    Arguments.of(questions, new Question(0L,3, "question 3 ?", QuestionType.RADIO),3L)
+                    Arguments.of(questions, new Question(0L,3, "question 3 ?", QuestionType.RADIO, Formulaire.SIXMOIS),3L)
             );
     }
 
