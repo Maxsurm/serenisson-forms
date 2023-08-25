@@ -1,13 +1,13 @@
-package formulairesClient.services;
+package formulairesClient.services.Old;
 
 import formulairesClient.entities.User;
 import formulairesClient.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends GenericService<User, Long, UserRepository> {
+public class UserServiceOld extends GenericServiceOld<User, Long, UserRepository> {
 
-    protected UserService(UserRepository repository) {
+    protected UserServiceOld(UserRepository repository) {
         super(repository);
     }
 

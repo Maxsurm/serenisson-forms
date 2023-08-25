@@ -14,11 +14,8 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-public class Anamnese implements Serializable {
+public class Anamnese extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
     @Temporal(TemporalType.DATE)
     private LocalDate createdAt;

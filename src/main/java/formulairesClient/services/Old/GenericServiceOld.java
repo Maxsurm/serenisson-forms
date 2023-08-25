@@ -1,15 +1,14 @@
-package formulairesClient.services;
+package formulairesClient.services.Old;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
-public abstract class GenericService<Entity, ID, Repository extends JpaRepository<Entity, ID>> {
+public abstract class GenericServiceOld<Entity, ID, Repository extends JpaRepository<Entity, ID>> {
     protected final Repository repository;
 
 
-    protected GenericService(Repository repository) {
+    protected GenericServiceOld(Repository repository) {
         this.repository = repository;
     }
 
@@ -18,9 +17,9 @@ public abstract class GenericService<Entity, ID, Repository extends JpaRepositor
 
     }
 
-    public Optional<Entity> findById(ID id){
-        return repository.findById(id);
-    }
+//    public Optional<Entity> findById(ID id){
+//        return repository.findById(id);
+//    }
 
     public void deleteById(ID id){
         repository.deleteById(id);

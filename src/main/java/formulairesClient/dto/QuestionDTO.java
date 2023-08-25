@@ -1,7 +1,6 @@
-package formulairesClient.forms;
+package formulairesClient.dto;
 
-import formulairesClient.entities.question.Formulaire;
-import formulairesClient.entities.question.QuestionType;
+import formulairesClient.entities.Question.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.Range;
@@ -9,6 +8,7 @@ import org.hibernate.validator.constraints.Range;
 public class QuestionDTO {
 
     private long id;
+    private int version;
     @Range(min=1)
     private int rankOrder;
 
@@ -26,6 +26,14 @@ public class QuestionDTO {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public Formulaire getFormulaire() {

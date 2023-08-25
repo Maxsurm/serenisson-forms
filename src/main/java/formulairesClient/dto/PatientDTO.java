@@ -1,4 +1,4 @@
-package formulairesClient.forms;
+package formulairesClient.dto;
 
 import formulairesClient.entities.Anamnese;
 import jakarta.validation.constraints.Email;
@@ -9,6 +9,7 @@ public class PatientDTO {
 
     private long id;
 
+    private int version;
 
     @NotBlank
     @Size(min=2,max=50)
@@ -40,6 +41,15 @@ public class PatientDTO {
     public void setId(long id) {
         this.id = id;
     }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     public String getPrenom() {
         return prenom;
     }
@@ -71,4 +81,5 @@ public class PatientDTO {
     public void setAnamnese(Anamnese anamnese) {
         this.anamnese = anamnese;
     }
+
 }

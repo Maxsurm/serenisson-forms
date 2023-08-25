@@ -12,12 +12,8 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Entity
-public class Patient implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Patient extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //generation automatique d'ID
-    private long id;
 
     @Column(nullable = false,length= 50)
     private String prenom;
