@@ -7,11 +7,10 @@ import formulairesClient.repositories.PatientRepository;
 import formulairesClient.tools.DtoTool;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,13 +21,9 @@ public class PatientServiceImpl implements IPatientService{
     private PatientRepository patientRepository;
 
     @Override
-    public List<PatientDTO> getAllBy(int page, int size, String search) throws Exception {
-        List<PatientDTO> result = new ArrayList<>();
-        List<Patient> patients = patientRepository.findAllByNomContaining(search, PageRequest.of(page,size)).getContent();
-        for(Patient p : patients){
-            result.add(DtoTool.convert(p, PatientDTO.class));
-        }
-        return result;
+    public Page<PatientDTO> getAllBy(int page, int size, String search) throws Exception {
+        return patientRepository.findAllByNomContaining(search, PageRequest.of(page,size)).map(
+                p->DtoTool.convert(p, PatientDTO.class));
     }
 
     @Override

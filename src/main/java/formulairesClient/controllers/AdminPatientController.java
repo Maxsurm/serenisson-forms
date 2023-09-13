@@ -1,14 +1,13 @@
 package formulairesClient.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.PatientDTO;
 import formulairesClient.services.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,15 +20,11 @@ public class AdminPatientController {
 
     //Liste avec pagination
     @GetMapping(value = {"/{page}/{size}/{search}", "/{page}/{size}"}, produces = "application/json")
-    public List<PatientDTO> getAllBy(@PathVariable("page") int page,
+    public Page<PatientDTO> getAllBy(@PathVariable("page") int page,
                                      @PathVariable("size")int size,
                                      @PathVariable(value = "search", required = false) Optional<String> searchOpt) throws Exception{
         //page commence par 1
-        if(searchOpt.isPresent()){
-            return patientService.getAllBy(page -1,size, searchOpt.get());
-        }else{
-            return patientService.getAllBy(page -1,size, "");
-        }
+        return patientService.getAllBy(page -1,size, searchOpt.orElse(""));
     }
 
     //---GetbyId---
