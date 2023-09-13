@@ -20,7 +20,7 @@ public class Question extends BaseEntity {
 
     // L'énumération servira à choisir le template en fonction du type de question (RADIO, QCM ou TexteArea)
     public enum QuestionType {
-        RADIO, QCM, TEXT
+        BOOL, TEXT, TEXTAREA, R1, R2
     }
 
     @Enumerated(EnumType.STRING)
