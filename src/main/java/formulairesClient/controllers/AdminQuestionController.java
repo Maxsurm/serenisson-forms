@@ -3,8 +3,11 @@ package formulairesClient.controllers;
 
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.QuestionDTO;
+import formulairesClient.dto.UserDTO;
+import formulairesClient.entities.Question.Formulaire;
 import formulairesClient.services.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +23,11 @@ public class AdminQuestionController {
 
     //Liste avec pagination
     @GetMapping(value = {"/{page}/{size}/{search}", "/{page}/{size}"}, produces = "application/json")
-    public List<QuestionDTO> getAllBy(@PathVariable("page") int page,
-                                     @PathVariable("size")int size,
-                                     @PathVariable(value = "search", required = false) Optional<String> searchOpt) throws Exception{
+    public Page<QuestionDTO> getAllBy(@PathVariable("page") int page,
+                                      @PathVariable("size")int size,
+                                      @PathVariable(value = "search", required = false) Optional<String> searchOpt) throws Exception{
         //page commence par 1
-        if(searchOpt.isPresent()){
-            return questionService.getAllBy(page -1,size, searchOpt.get());
-        }else{
-            return questionService.getAllBy(page -1,size, "");
-        }
+        return questionService.getAllBy(page -1,size, searchOpt.orElse(""));
     }
 
     //---GetbyId---
@@ -54,15 +53,18 @@ public class AdminQuestionController {
     }
 
 
-    //---Creation ou modif Patient---
+    //---Creation ou modif Question---
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<QuestionDTO> save(@RequestBody QuestionDTO questionDTO) throws Exception{
         QuestionDTO dtoSaved = questionService.saveOrUpdate(questionDTO);
         return ResponseEntity.ok(dtoSaved);
     }
 
-
-
+    // Recuperation des questions lié a un formulaire spécifique
+    @GetMapping(value = "/{formulaire}", produces = "application/json")
+    public List<QuestionDTO> getAllByForm(@PathVariable("formulaire") Formulaire formulaire) throws Exception{
+        return questionService.getAllByForm(formulaire);
+    }
 
 
 

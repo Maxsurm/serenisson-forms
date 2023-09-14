@@ -4,7 +4,9 @@ package formulairesClient.controllers;
 import formulairesClient.repositories.PatientRepository;
 import formulairesClient.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,6 +21,10 @@ public class FrontAnamnese {
     //Accès au repository de patient
     @Autowired
     private PatientRepository p_repository;
+
+    @Value("c:/tools/fakestorage")
+    private String storageFolder;
+
 
 
 }

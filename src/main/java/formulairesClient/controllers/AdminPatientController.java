@@ -2,12 +2,15 @@ package formulairesClient.controllers;
 
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.PatientDTO;
+import formulairesClient.services.IEmailService;
 import formulairesClient.services.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +19,9 @@ public class AdminPatientController {
 
     @Autowired
     private IPatientService patientService;
+
+    @Autowired
+    private IEmailService emailService;
 
 
     //Liste avec pagination
@@ -48,6 +54,15 @@ public class AdminPatientController {
     public ResponseEntity<PatientDTO> save(@RequestBody PatientDTO patientDTO) throws Exception{
         PatientDTO dtoSaved = patientService.saveOrUpdate(patientDTO);
         return ResponseEntity.ok(dtoSaved);
+    }
+
+    //Envoyer un mail pour le formulaire d'Anamnèse
+    @GetMapping("/sendanamnese")
+    public String sendAnamnèse(){
+        Map<String, Object> model = new HashMap<>();
+//        model.put(info = "info")
+        emailService.sendMail("anamail.html", model,"Formulaire avant rendez-vous","surmontmaxime@gmail.com" , "cs@serenisson.com" );
+        return "redirect:/admin/patients";
     }
 
 

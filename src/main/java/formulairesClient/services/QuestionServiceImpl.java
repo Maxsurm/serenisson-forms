@@ -2,13 +2,18 @@ package formulairesClient.services;
 
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.QuestionDTO;
+import formulairesClient.dto.UserDTO;
 import formulairesClient.entities.Question;
+import formulairesClient.entities.User;
 import formulairesClient.repositories.QuestionRepository;
 import formulairesClient.tools.DtoTool;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import formulairesClient.entities.Question.Formulaire;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +26,10 @@ public class QuestionServiceImpl implements IQuestionService {
     @Autowired
     private QuestionRepository questionRepository;
 
-    @Override
-    public List<QuestionDTO> getAllBy(int page, int size, String search) throws Exception {
-        List<QuestionDTO> result = new ArrayList<>();
-        List<Question> questions = questionRepository.findAllByQuestionContaining(search, PageRequest.of(page,size)).getContent();
-        for(Question p : questions){
-            result.add(DtoTool.convert(p, QuestionDTO.class));
-        }
-        return result;
+        @Override
+    public Page<QuestionDTO> getAllBy(int page, int size, String search) throws Exception {
+        return questionRepository.findAllByQuestionContaining(search, PageRequest.of(page,size)).map(
+                q->DtoTool.convert(q, QuestionDTO.class));
     }
 
     @Override
@@ -59,4 +60,15 @@ public class QuestionServiceImpl implements IQuestionService {
         }
         return null;
     }
+
+    @Override
+    public List<QuestionDTO> getAllByForm(Formulaire formulaire) throws Exception {
+        List<QuestionDTO> result = new ArrayList<>();
+        List<Question> questions = questionRepository.findAllByFormulaire(formulaire);
+        for(Question q : questions){
+            result.add(DtoTool.convert(q, QuestionDTO.class));
+        }
+        return result;
+    }
+
 }

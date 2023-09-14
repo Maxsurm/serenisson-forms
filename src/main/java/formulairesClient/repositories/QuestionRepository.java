@@ -1,7 +1,7 @@
 package formulairesClient.repositories;
 
-import formulairesClient.entities.Patient;
 import formulairesClient.entities.Question;
+import formulairesClient.entities.Question.Formulaire;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +15,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByRankOrder(int rankOrder);
     Page<Question> findAllByQuestionContaining(String nom, Pageable pageable);
     long countByQuestionContaining(String nom);
+
+    List<Question> findAllByFormulaire(Formulaire formulaire);
 
 }
