@@ -42,8 +42,8 @@ public class FrontAnamnese {
     public void recupererReponses () throws Exception{
         Map<Question, String>
         reponses = Map.of(
-                new Question(1,"quel age as tu ?", QuestionType.TEXT ,Formulaire.ANAMNESE),
-                "osef"
+//                new Question(1,"quel age as tu ?", QuestionType.TEXT ,Formulaire.ANAMNESE),
+//                "osef"
         );
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/");

@@ -5,7 +5,10 @@
     <title>Anamnèse</title>
 </head>
 <body>
-<div>test</div>
+<h1>Anamnèse</h1>
+
+<div>NOM PRENOM</div>
+<div>Date: </div>
 <div th:each="reponse : ${reponses}">
     <p th:text = "${reponse.key.question}"></p>
     <p th:text = "${reponse.value}"></p>
