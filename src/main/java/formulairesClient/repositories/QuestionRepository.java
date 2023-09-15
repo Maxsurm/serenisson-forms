@@ -16,6 +16,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     Page<Question> findAllByQuestionContaining(String nom, Pageable pageable);
     long countByQuestionContaining(String nom);
 
-    List<Question> findAllByFormulaire(Formulaire formulaire);
+    List<Question> findByFormulaire(Formulaire formulaire);
+
+//    Page<Question> findByFormulaireAndRankOrder(Formulaire formulaire, int rankOrder);
 
 }

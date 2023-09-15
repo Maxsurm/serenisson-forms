@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 @Transactional
 public class QuestionServiceImpl implements IQuestionService {
@@ -62,13 +63,18 @@ public class QuestionServiceImpl implements IQuestionService {
     }
 
     @Override
-    public List<QuestionDTO> getAllByForm(Formulaire formulaire) throws Exception {
+    public List<QuestionDTO> findByFormulaire(Formulaire formulaire) throws Exception {
         List<QuestionDTO> result = new ArrayList<>();
-        List<Question> questions = questionRepository.findAllByFormulaire(formulaire);
+        List<Question> questions = questionRepository.findByFormulaire(formulaire);
         for(Question q : questions){
             result.add(DtoTool.convert(q, QuestionDTO.class));
         }
         return result;
     }
 
+//    @Override
+//    public Page<QuestionDTO> findByFormulaireAndRankOrder(int rankOrder, Formulaire formulaire) throws Exception {
+//        return questionRepository.findByFormulaireAndRankOrder(formulaire, PageRequest.of(rankOrder)).map(
+//                qfr->DtoTool.convert(qfr, QuestionDTO.class));
+//    }
 }

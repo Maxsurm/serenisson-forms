@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Anamnèse</title>
+</head>
+<body>
+<div>test</div>
+<div th:each="reponse : ${reponses}">
+    <p th:text = "${reponse.key.question}"></p>
+    <p th:text = "${reponse.value}"></p>
+</div>
+
+</body>
+</html>

@@ -14,5 +14,7 @@ public interface IQuestionService {
     void deleteById(long id) throws Exception;
     QuestionDTO getById(long id);
 
-    List<QuestionDTO> getAllByForm(Formulaire formulaire) throws Exception;
+    List<QuestionDTO> findByFormulaire(Formulaire formulaire) throws Exception;
+//Page<QuestionDTO> findByFormulaireAndRankOrder(int rankOrder, Formulaire formulaire) throws Exception;
+
 }
