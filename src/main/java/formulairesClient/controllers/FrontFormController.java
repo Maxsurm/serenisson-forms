@@ -7,6 +7,7 @@ import formulairesClient.entities.Patient;
 import formulairesClient.entities.Question.Formulaire;
 import formulairesClient.repositories.PatientRepository;
 import formulairesClient.repositories.QuestionRepository;
+import formulairesClient.tools.JwtTokenTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,9 @@ public class FrontFormController {
     @Autowired
     private PatientRepository p_repository;
 
+    @Autowired
+    private JwtTokenTool tokenTool;
+
     @Value("c:/tools/fakestorage")
     private String storageFolder;
 
@@ -58,7 +62,8 @@ public class FrontFormController {
         context.setVariable("prenom", patient.getPrenom());
         context.setVariable("form", formulaire);
 
-        OutputStream outputStream = new FileOutputStream(storageFolder + "/anamnese.pdf");
+        String format = String.format("/%s-%s-%s.pdf", formulaire.name(), patient.getNom(), patient.getPrenom());
+        OutputStream outputStream = new FileOutputStream(storageFolder + format);
 
         ITextRenderer renderer = new ITextRenderer();
         renderer.setDocumentFromString(templateEngine.process("form-skull", context));
@@ -66,6 +71,13 @@ public class FrontFormController {
         renderer.createPDF(outputStream);
 
         outputStream.close();
+
+        if (formulaire.equals(Formulaire.ANAMNESE)) {
+            patient.setAnapath(format);
+        } else {
+            patient.setSixpath(format);
+        }
+        p_repository.saveAndFlush(patient);
     }
 
 

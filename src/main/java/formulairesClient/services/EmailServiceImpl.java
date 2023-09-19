@@ -63,6 +63,7 @@ public class EmailServiceImpl implements IEmailService{
 
         MimeMessage msg = javaMailSender.createMimeMessage();
         msg.setFrom(from);
+        msg.setSubject(titre);
         msg.setRecipients(Message.RecipientType.TO, byId.getMail());
         msg.setText(emailTemplate);
         javaMailSender.send(msg);
