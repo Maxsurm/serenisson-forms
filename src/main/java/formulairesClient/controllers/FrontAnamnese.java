@@ -1,6 +1,7 @@
 package formulairesClient.controllers;
 
 
+import formulairesClient.dto.ResponseDTO;
 import formulairesClient.entities.Question;
 import formulairesClient.entities.Question.Formulaire;
 import formulairesClient.entities.Question.QuestionType;
@@ -20,6 +21,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,12 +41,8 @@ public class FrontAnamnese {
     private String storageFolder;
 
     @PostMapping
-    public void recupererReponses () throws Exception{
-        Map<Question, String>
-        reponses = Map.of(
-//                new Question(1,"quel age as tu ?", QuestionType.TEXT ,Formulaire.ANAMNESE),
-//                "osef"
-        );
+    public void recupererReponses (@RequestBody List<ResponseDTO> reponses) throws Exception{
+
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/");
         templateResolver.setSuffix(".html");

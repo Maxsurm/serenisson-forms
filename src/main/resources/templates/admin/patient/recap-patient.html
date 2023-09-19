@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin-layout.html::main-fragment(~{::title},~{::#patients-main-content})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche Patient</title>
+</head>
+<body>
+<div><h1>Fiche Patient</h1></div>
+<div>
+    <h3 th:value="${patient.prenom}">Prénom:</h3>
+    <h3 th:value="${patient.nom}">Nom:</h3>
+    <h3 th:value="${patient.mail}">Mail:</h3>
+    <div>
+        <h3 th:value="${patient.anamnese}">Anamnèse sous format pdf</h3>
+    </div>
+</div>
+
+</body>
+</html>

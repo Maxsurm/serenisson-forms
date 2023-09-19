@@ -10,8 +10,8 @@
 <div>NOM PRENOM</div>
 <div>Date: </div>
 <div th:each="reponse : ${reponses}">
-    <p th:text = "${reponse.key.question}"></p>
-    <p th:text = "${reponse.value}"></p>
+    <p th:text = "${reponse.question.question}"></p>
+    <p th:text = "${reponse.response}"></p>
 </div>
 
 </body>
