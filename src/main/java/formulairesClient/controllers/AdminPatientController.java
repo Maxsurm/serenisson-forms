@@ -39,7 +39,7 @@ public class AdminPatientController {
 
     //---GetbyId---
     @GetMapping(value = "/{id}", produces = "application/json")
-    public PatientDTO findById(@PathVariable("id")long id){
+    public PatientDTO findById(@PathVariable long id){
         return patientService.getById(id);
     }
 
@@ -62,7 +62,7 @@ public class AdminPatientController {
 
     //Envoyer un mail pour le formulaire d'Anamnèse
     @GetMapping("/sendform/{formulaire}/{id}")
-    public String sendAnamnese(@PathVariable Formulaire formulaire, Long id) throws MessagingException {
+    public String sendForm(@PathVariable Formulaire formulaire, @PathVariable Long id) throws MessagingException {
         emailService.sendMail(formulaire, patientService.getById(id) );
 
         return "redirect:/admin/patients";

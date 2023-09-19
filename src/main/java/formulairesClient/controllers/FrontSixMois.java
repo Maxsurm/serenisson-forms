@@ -18,6 +18,8 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class FrontSixMois {
 
         Context context = new Context();
         context.setVariable("reponses", reponses );
-        context.setVariable("date", new Date());
+        context.setVariable("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
 
         OutputStream outputStream = new FileOutputStream(storageFolder + "/six-mois.pdf");
 
