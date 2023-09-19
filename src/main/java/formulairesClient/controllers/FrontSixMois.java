@@ -2,35 +2,28 @@ package formulairesClient.controllers;
 
 
 import formulairesClient.dto.ResponseDTO;
-import formulairesClient.entities.Question;
-import formulairesClient.entities.Question.Formulaire;
-import formulairesClient.entities.Question.QuestionType;
 import formulairesClient.repositories.PatientRepository;
 import formulairesClient.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
-
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/anamnese")
-public class FrontAnamnese {
+@RequestMapping("/sixmois")
+public class FrontSixMois {
 
 
     //Accès au repository des questions
@@ -57,12 +50,12 @@ public class FrontAnamnese {
 
         Context context = new Context();
         context.setVariable("reponses", reponses );
-        context.setVariable("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        context.setVariable("date", new Date());
 
-        OutputStream outputStream = new FileOutputStream(storageFolder + "/anamnese.pdf");
+        OutputStream outputStream = new FileOutputStream(storageFolder + "/six-mois.pdf");
 
         ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(templateEngine.process("anamnese-skull", context));
+        renderer.setDocumentFromString(templateEngine.process("six-mois-skull", context));
         renderer.layout();
         renderer.createPDF(outputStream);
 

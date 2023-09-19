@@ -2,8 +2,10 @@ package formulairesClient.controllers;
 
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.PatientDTO;
+
 import formulairesClient.services.IEmailService;
 import formulairesClient.services.IPatientService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import formulairesClient.entities.Question.Formulaire;
 
 @RestController
 @RequestMapping("/admin/patients")
@@ -35,7 +39,7 @@ public class AdminPatientController {
 
     //---GetbyId---
     @GetMapping(value = "/{id}", produces = "application/json")
-    public PatientDTO findById(@PathVariable("id")long id) throws Exception{
+    public PatientDTO findById(@PathVariable("id")long id){
         return patientService.getById(id);
     }
 
@@ -57,13 +61,13 @@ public class AdminPatientController {
     }
 
     //Envoyer un mail pour le formulaire d'Anamnèse
-    @GetMapping("/sendanamnese")
-    public String sendAnamnèse(){
-        Map<String, Object> model = new HashMap<>();
-//        model.put(info = "info")
-        emailService.sendMail("anamail.html", model,"Formulaire avant rendez-vous","surmontmaxime@gmail.com" , "cs@serenisson.com" );
+    @GetMapping("/sendform/{formulaire}/{id}")
+    public String sendAnamnese(@PathVariable Formulaire formulaire, Long id) throws MessagingException {
+        emailService.sendMail(formulaire, patientService.getById(id) );
+
         return "redirect:/admin/patients";
     }
+
 
 
 

@@ -67,7 +67,7 @@ public class AdminQuestionController {
 
 //     Recuperation des questions lié a un formulaire spécifique
     @GetMapping(value = "/form/{formulaire}", produces = "application/json")
-    public List<QuestionDTO> getAllByForm(@PathVariable("formulaire") Formulaire formulaire) throws Exception {
+    public List<QuestionDTO> getAllByForm(@PathVariable Formulaire formulaire) throws Exception {
         return questionService.findByFormulaire(formulaire);
     }
 

@@ -4,15 +4,15 @@ import formulairesClient.entities.Question;
 
 public class ResponseDTO {
 
-    private Question question;
+    private Question questions;
     private String response;
 
-    public Question getQuestion() {
-        return question;
+    public Question getQuestions() {
+        return questions;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setQuestions(Question questions) {
+        this.questions = questions;
     }
 
     public String getResponse() {

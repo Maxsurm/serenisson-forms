@@ -1,7 +1,12 @@
 package formulairesClient.services;
 
+import formulairesClient.dto.PatientDTO;
+import formulairesClient.entities.Question.Formulaire;
+import jakarta.mail.MessagingException;
+
 import java.util.Map;
 
 public interface IEmailService {
-    void sendMail(String template, Map<String, Object>modelMap, String title, String to, String from);
+
+    void sendMail(Formulaire formulaire, PatientDTO byId) throws MessagingException;
 }
