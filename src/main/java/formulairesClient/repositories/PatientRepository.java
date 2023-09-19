@@ -12,4 +12,7 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     Page<Patient> findAllByNomContaining(String nom, Pageable pageable);
     long countByNomContaining(String nom);
+
+    Patient findByMail(String mail);
+
 }

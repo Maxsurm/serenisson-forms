@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Anamnèse</title>
+    <title th:text="${form}"></title>
 </head>
 <body>
-<h1>Anamnèse</h1>
+<h1 th:text="${form}"></h1>
 
-<div>NOM PRENOM</div>
+<div th:text="${nom} + ' ' + ${prenom}"></div>
 <div th:text="'Date : ' + ${date}"></div>
 <div th:each="reponse : ${reponses}">
 <p>

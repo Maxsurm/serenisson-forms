@@ -1,6 +1,5 @@
 package formulairesClient.dto;
 
-import formulairesClient.entities.Anamnese;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -23,7 +22,25 @@ public class PatientDTO {
     @Email
     private String mail;
 
-    private Anamnese anamnese;
+    private String anapath;
+
+    private String sixpath;
+
+    public String getAnapath() {
+        return anapath;
+    }
+
+    public void setAnapath(String anapath) {
+        this.anapath = anapath;
+    }
+
+    public String getSixpath() {
+        return sixpath;
+    }
+
+    public void setSixpath(String sixpath) {
+        this.sixpath = sixpath;
+    }
 
     public PatientDTO() {
     }
@@ -74,12 +91,6 @@ public class PatientDTO {
         this.mail = mail;
     }
 
-    public Anamnese getAnamnese() {
-        return anamnese;
-    }
 
-    public void setAnamnese(Anamnese anamnese) {
-        this.anamnese = anamnese;
-    }
 
 }

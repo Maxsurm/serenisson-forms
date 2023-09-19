@@ -22,12 +22,14 @@ public class Patient extends BaseEntity {
     private String nom;
 
     @Email
-    @Column(nullable = false,length = 100)
+    @Column(nullable = false,length = 100, unique = true)
     private String mail;
 
-    @OneToOne
-    // peut etre vide lors de la création du patient, car peuplé par le patient dans un deuxième temps
-    private Anamnese anamnese;
+    @Column(nullable = true)
+    private String anapath;
+
+    @Column(nullable = true)
+    private String sixpath;
 
     public Patient(String prenom, String nom, String mail) {
         this.prenom = prenom;

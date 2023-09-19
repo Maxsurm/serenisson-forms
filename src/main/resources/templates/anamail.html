@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Anamnèse</title>
+</head>
+<body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td align="center">
@@ -13,8 +20,10 @@
         <td>
             <p style="text-align:center;">
                 Afin de preparer votre premier rendez-vous veuillez s'il vous plait cliquez sur le lien ci-dessous et remplir le formulaire:<br><br>
-                <a style="background :green; border-radius:15px; color:white ; font-size: 1rem; padding: 5px " href="">Se rendre au formulaire</a>
+                <a style="background :green; border-radius:15px; color:white ; font-size: 1rem; padding: 5px " th:href="${url}">Se rendre au formulaire</a>
             </p>
         </td>
     </tr>
 </table>
+</body>
+</html>

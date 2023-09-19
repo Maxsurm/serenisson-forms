@@ -15,6 +15,7 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -42,8 +43,8 @@ public class EmailServiceImpl implements IEmailService{
             case SIXMOIS -> "Votre formulaire après six mois d'utilisation";
             default -> "Formulaire avant rendez-vous";
         };
-        String token = tokenTool.doGenerateToken(Map.of(), byId.getMail());
-        String url = String.format("http://localhost:5173/%s/%s", formulaire.name(), token) ;
+        String token = tokenTool.doGenerateToken(new HashMap<>(), byId.getMail());
+        String url = String.format("http://localhost:5173/%s?token=%s", formulaire.name(), token) ;
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/");
