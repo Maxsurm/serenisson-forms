@@ -8,6 +8,8 @@ import formulairesClient.entities.Question.Formulaire;
 import formulairesClient.repositories.PatientRepository;
 import formulairesClient.repositories.QuestionRepository;
 import formulairesClient.tools.JwtTokenTool;
+import formulairesClient.tools.PatientUpdater;
+import formulairesClient.tools.PdfGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -40,44 +42,20 @@ public class FrontFormController {
     @Autowired
     private JwtTokenTool tokenTool;
 
-    @Value("c:/tools/fakestorage")
+    @Value("${storage.folder}")
     private String storageFolder;
 
+    @Autowired
+    private PdfGenerator pdfGenerator;
+    @Autowired
+    private PatientUpdater patientUpdater;
+
+
     @PostMapping("/{formulaire}/{token}")
-    public void recupererReponses (@PathVariable Formulaire formulaire, @PathVariable String token, @RequestBody List<ResponseDTO> reponses) throws Exception{
-
+    public void recupererReponses(@PathVariable Formulaire formulaire, @PathVariable String token, @RequestBody List<ResponseDTO> reponses) throws Exception {
         Patient patient = p_repository.findByMail(tokenTool.getUsernameFromToken(token));
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-
-        TemplateEngine templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
-
-        Context context = new Context();
-        context.setVariable("reponses", reponses );
-        context.setVariable("date", LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        context.setVariable("nom", patient.getNom().toUpperCase());
-        context.setVariable("prenom", patient.getPrenom());
-        context.setVariable("form", formulaire);
-
-        String format = String.format("/%s-%s-%s.pdf", formulaire.name(), patient.getNom(), patient.getPrenom());
-        OutputStream outputStream = new FileOutputStream(storageFolder + format);
-
-        ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(templateEngine.process("form-skull", context));
-        renderer.layout();
-        renderer.createPDF(outputStream);
-
-        outputStream.close();
-
-        if (formulaire.equals(Formulaire.ANAMNESE)) {
-            patient.setAnapath(format);
-        } else {
-            patient.setSixpath(format);
-        }
-        p_repository.saveAndFlush(patient);
+        String pdfFileName = pdfGenerator.generatePdf(formulaire, patient, reponses);
+        patientUpdater.updatePatient(patient, formulaire, pdfFileName);
     }
 
 

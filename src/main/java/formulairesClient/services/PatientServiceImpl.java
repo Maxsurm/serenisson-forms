@@ -3,6 +3,7 @@ package formulairesClient.services;
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.PatientDTO;
 import formulairesClient.entities.Patient;
+import formulairesClient.entities.Question.Formulaire;
 import formulairesClient.repositories.PatientRepository;
 import formulairesClient.tools.DtoTool;
 import jakarta.transaction.Transactional;
@@ -54,4 +55,6 @@ public class PatientServiceImpl implements IPatientService{
         }
         return null;
     }
+
+
 }

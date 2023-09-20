@@ -41,7 +41,7 @@ public class AdminQuestionController {
         return questionService.getById(id);
     }
 
-    // --- Renvoyer le nombre de patients ---
+    // --- Renvoyer le nombre de questions ---
     @GetMapping(value = {"/count/{search}", "/count"}, produces = "application/json")
     public CountDTO countBy(@PathVariable(value = "search", required = false) Optional<String> searchOpt) throws Exception {
         if (searchOpt.isPresent()) {

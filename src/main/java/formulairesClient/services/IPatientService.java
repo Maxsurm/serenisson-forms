@@ -2,6 +2,7 @@ package formulairesClient.services;
 
 import formulairesClient.dto.CountDTO;
 import formulairesClient.dto.PatientDTO;
+import formulairesClient.entities.Question.Formulaire;
 import org.springframework.data.domain.Page;
 
 public interface IPatientService {
