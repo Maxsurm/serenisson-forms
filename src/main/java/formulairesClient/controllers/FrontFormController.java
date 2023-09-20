@@ -1,7 +1,7 @@
 package formulairesClient.controllers;
 
 
-import formulairesClient.dto.PatientDTO;
+
 import formulairesClient.dto.ResponseDTO;
 import formulairesClient.entities.Patient;
 import formulairesClient.entities.Question.Formulaire;
@@ -13,17 +13,7 @@ import formulairesClient.tools.PdfGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.xhtmlrenderer.pdf.ITextRenderer;
 
-
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
