@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Anamnèse</title>
+</head>
+<body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td align="center">
@@ -6,15 +13,17 @@
     </tr>
     <tr>
         <td>
-            <h1 style="text-align:center;">Bonjour NOM PRENOM</h1>
+            <h1 th:text="'Bonjour '+${nom}+' '+${prenom}" style="text-align:center;"></h1>
         </td>
     </tr>
     <tr>
         <td>
             <p style="text-align:center;">
                 Afin de connaitre vos impressions concernant vos appareils auditifs, veuillez s'il vous plait cliquez sur le lien ci-dessous et remplir le formulaire:<br><br>
-                <a style="background :green; border-radius:15px; color:white ; font-size: 1rem; padding: 5px " href="">Se rendre au formulaire</a>
+                <a style="background :green; border-radius:15px; color:white ; font-size: 1rem; padding: 5px " th:href="${url}">Se rendre au formulaire</a>
             </p>
         </td>
     </tr>
 </table>
+</body>
+</html>

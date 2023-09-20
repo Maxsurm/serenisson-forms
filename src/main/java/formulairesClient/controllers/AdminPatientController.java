@@ -86,8 +86,8 @@ public class AdminPatientController {
         Resource resource = null;
         try {
             Path path = switch (formulaire) {
-                case SIXMOIS -> Paths.get(".").resolve(storageFolder+p.getSixpath());
-                default -> Paths.get(".").resolve(storageFolder+p.getAnapath());
+                case SIXMOIS -> Paths.get(".").resolve(storageFolder+"/"+p.getSixpath());
+                default -> Paths.get(".").resolve(storageFolder+"/"+p.getAnapath());
             };
             resource = new UrlResource(path.toUri());
         }catch(Exception e){
@@ -97,6 +97,8 @@ public class AdminPatientController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+resource.getFilename()+"\"")
                 .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(newPath))
+                .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "X-Suggested-Filename")
+                .header("X-Suggested-Filename", resource.getFilename())
                 .body(resource);
     }
 }
